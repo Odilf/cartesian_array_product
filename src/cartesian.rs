@@ -21,69 +21,65 @@
 /// ```
 #[macro_export]
 macro_rules! cartesian {
-    () => {
-        []
+    ($($args:tt)*) => {
+        $crate::cartesian_map!($($args)*)
     };
+}
 
-    ([$($a:tt),*]) => {
-        [$($a),*]
-    };
-
-    ([$($a:tt),*], [$($b:tt),*]) => {
+#[macro_export]
+macro_rules! cartesian_map {
+    // General case
+    ($([$($rest:tt),*]),*) => {
         cartesian!(@impl
-            initial: [$(($a))*];
-            acc: [];
-            current: [$($b)*];
-            queue: [];
-        )
-    };
-
-    ([$($a:tt),*], [$($b:tt),*], $([$($rest:tt),*]),*) => {
-        cartesian!(@impl
-            initial: [$(($a))*];
-            acc: [];
-            current: [$($b)*];
-            queue: [$([$($rest)*])*];
+            initial: [];
+            acc: [()]; // Commas are removed in implementation
+            current: [];
+            queue: [$([$($rest)*])*]; // Commas are removed in implementation
         )
     };
 
     // IMPLEMENTATION
 
-    // If current is empty and queue is empty
+    // If current is empty and queue is empty we're done. Flush `acc`
     (@impl
-        initial: [$($initial:tt)*];
-        acc: [$($acc:tt)*];
+        initial: $initial:tt;
+        acc: [$(($($acc:tt)*))*];
         current: [];
         queue: [];
     ) => {
-        [$($acc),*]
+        [$(($($acc),*)),*] // Add commas back in
     };
 
-    // If current is empty but queue has something
+    // If current is empty but queue has something, move the first element of queue to current
     (@impl
-        initial: [$($initial:tt)*];
-        acc: [$($acc:tt)*];
+        initial: $initial:tt;
+        acc: $acc:tt;
         current: [];
-        queue: [$queue_head:tt $([$queue_tail:tt])*];
+        queue: [$queue_head:tt $($queue_tail:tt)*];
     ) => {
         cartesian!(@impl
-            initial: [$($acc)*];
+            initial: $acc;
             acc: [];
             current: $queue_head;
             queue: [$($queue_tail)*];
         )
     };
 
-    // If current has something
+    // If current has something, make a tuple with each element of initial first of current
     (@impl
-        initial: [$(($($initial:tt),*))*];
+        initial: [$(($($initial:tt)*))*];
         acc: [$($acc:tt)*];
         current: [$current_head:tt $($current_tail:tt)*];
         queue: $queue:tt;
     ) => {
         cartesian!(@impl
-            initial: [$(($($initial),*))*];
-            acc: [$($acc)* $(($($initial),*, $current_head))*];
+            initial: [$(($($initial)*))*];
+            acc: [
+                $($acc)* 
+                $(( // This is a tuple
+                    $($initial)* $current_head
+                ))*
+            ];
             current: [$($current_tail)*];
             queue: $queue;
         )
