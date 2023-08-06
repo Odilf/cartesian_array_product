@@ -1,4 +1,12 @@
 [package]
 name = "cartesian_array_product"
-version = "0.1.0"
+description = "Arrays of the cartesian product of a set of items."
+license-file = "LICENSE"
+documentation = "https://docs.rs/cartesian_array_product"
+readme = "README.md"
+repository = "https://github.com/Odilf/cartesian_array_product"
+
+keywords = ["cartesian", "array", "const"]
+
+version = "1.0.0"
 edition = "2021"
