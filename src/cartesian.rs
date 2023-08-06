@@ -1,6 +1,9 @@
 /// Takes N arrays and returns a list of N tuples with the combinations of the elements.
 ///
 /// It starts alternating from the start.
+/// 
+/// Oftentimes, you want to do a `.map` after this macro. If that's the case, you might
+/// want to use [`cartesian_array_map!`](crate::cartesian_array_map) instead.
 ///
 /// # Example
 ///
@@ -29,7 +32,7 @@ macro_rules! cartesian_array {
 /// Same as [`cartesian_array!`] but mapping each element.
 ///
 /// It is useful to use this macro instead of [`cartesian_array!`] followed by a `.map` because it avoids creating an intermediate array.
-/// Also, `.map` doesn't work in `const` scenarious, while [`cartesian_array_map!`] does.
+/// Also, `.map` doesn't work in `const` scenarious, while [`cartesian_array_map!`](crate::cartesian_array_map) does.
 ///
 /// # Example
 ///
