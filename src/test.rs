@@ -1,3 +1,5 @@
+#![cfg(test)]
+
 use crate::{cartesian_array, cartesian_array_map};
 
 #[test]
