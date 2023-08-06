@@ -10,3 +10,6 @@ keywords = ["cartesian", "array", "const", "macro"]
 
 version = "1.0.1"
 edition = "2021"
+
+[dependencies]
+const-anonymous-functions = "^1.0.0"

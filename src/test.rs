@@ -1,5 +1,7 @@
 #![cfg(test)]
 
+use const_anonymous_functions::caf;
+
 use crate::{cartesian_array, cartesian_array_map};
 
 #[test]
@@ -106,6 +108,18 @@ fn prod_2x2_const_map() {
     }
 
     const ARRAY: [i32; 4] = cartesian_array_map!([1, 2], [3, 4]; sum);
+
+    assert_eq!(ARRAY, expected)
+}
+
+#[test]
+fn prod_2x2_const_map_caf() {
+    let expected = [1 + 3, 2 + 3, 1 + 4, 2 + 4];
+
+    const ARRAY: [i32; 4] = cartesian_array_map!(
+        [1, 2], [3, 4]; 
+        caf!(|a: i32, b: i32| -> i32 { a + b })
+    );
 
     assert_eq!(ARRAY, expected)
 }

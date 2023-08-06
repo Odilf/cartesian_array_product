@@ -71,6 +71,26 @@ macro_rules! cartesian_array {
 ///
 /// assert_eq!(mapped_product, expected);
 /// ```
+/// 
+/// Tip: You can use [`caf!`](crate::caf) to create a const anonymous function
+/// 
+/// ```rust
+/// use cartesian_array_product::{cartesian_array_map, caf};
+///
+/// const mapped_product: [i32; 4] = cartesian_array_map!(
+///     [1, 2], [3, 4]; 
+///     caf!(|a: i32, b: i32| -> i32 { a + b })
+/// );
+/// 
+/// const expected: [i32; 4] = [
+///     1 + 3,
+///     2 + 3,
+///     1 + 4,
+///     2 + 4,
+/// ];
+///
+/// assert_eq!(mapped_product, expected);
+/// ```
 #[macro_export]
 macro_rules! cartesian_array_map {
     ($([$($queue:tt),*]),*) => {
