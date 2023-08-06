@@ -91,14 +91,14 @@ fn prod_2x3x4() {
 }
 
 #[test]
-fn prod_2x2_wrapped() {
+fn prod_2x2_map() {
     let expected = [1 + 3, 2 + 3, 1 + 4, 2 + 4];
 
     assert_eq!(cartesian_array_map!([1, 2], [3, 4]; |a, b| a + b), expected)
 }
 
 #[test]
-fn prod_2x2_wrapped_const() {
+fn prod_2x2_const_map() {
     let expected = [1 + 3, 2 + 3, 1 + 4, 2 + 4];
 
     const fn sum(a: i32, b: i32) -> i32 {
@@ -109,3 +109,4 @@ fn prod_2x2_wrapped_const() {
 
     assert_eq!(ARRAY, expected)
 }
+
