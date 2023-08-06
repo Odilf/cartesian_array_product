@@ -1,7 +1,7 @@
 [package]
 name = "cartesian_array_product"
 description = "Arrays of the cartesian product of a set of items."
-license-file = "LICENSE"
+license = "MIT"
 documentation = "https://docs.rs/cartesian_array_product"
 readme = "README.md"
 repository = "https://github.com/Odilf/cartesian_array_product"
