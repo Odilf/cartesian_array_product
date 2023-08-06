@@ -6,7 +6,7 @@ documentation = "https://docs.rs/cartesian_array_product"
 readme = "README.md"
 repository = "https://github.com/Odilf/cartesian_array_product"
 
-keywords = ["cartesian", "array", "const"]
+keywords = ["cartesian", "array", "const", "macro"]
 
 version = "1.0.1"
 edition = "2021"
