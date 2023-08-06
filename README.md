@@ -19,3 +19,5 @@ let expected = [
 
 assert_eq!(product, expected);
 ```
+
+See <https://docs.rs/cartesian_array_product> for further info. 
