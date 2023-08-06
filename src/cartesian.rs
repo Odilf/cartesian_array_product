@@ -103,7 +103,7 @@ macro_rules! cartesian_array_map {
         )
     };
 
-    ($([$($queue:tt),*]),*; $wrapper:expr) => {
+    ($([$($queue:expr),*]),*; $wrapper:expr) => {
         $crate::cartesian_array_map!(@impl
             initial: [];
             acc: [()];
