@@ -8,7 +8,7 @@ repository = "https://github.com/Odilf/cartesian_array_product"
 
 keywords = ["cartesian", "array", "const", "macro"]
 
-version = "1.0.2"
+version = "1.1.0"
 edition = "2021"
 
 [dependencies]
