@@ -1,12 +1,12 @@
 /// Takes N arrays and returns a list of N tuples with the combinations of the elements.
-/// 
-/// It starts alternating from the start. 
-/// 
+///
+/// It starts alternating from the start.
+///
 /// # Example
-/// 
+///
 /// ```rust
 /// use cartesian_array_product::cartesian_array;
-/// 
+///
 /// let cartesian_product = cartesian_array!(["a", "b"], ["x", "y", "z"]);
 /// let expected = [
 ///     ("a", "x"),
@@ -16,7 +16,7 @@
 ///     ("a", "z"),
 ///     ("b", "z"),
 /// ];
-/// 
+///
 /// assert_eq!(cartesian_product, expected);
 /// ```
 #[macro_export]
@@ -27,45 +27,45 @@ macro_rules! cartesian_array {
 }
 
 /// Same as [`cartesian_array!`] but mapping each element.
-/// 
+///
 /// It is useful to use this macro instead of [`cartesian_array!`] followed by a `.map` because it avoids creating an intermediate array.
 /// Also, `.map` doesn't work in `const` scenarious, while [`cartesian_array_map!`] does.
-/// 
+///
 /// # Example
-/// 
+///
 /// ## Regular use
-/// 
+///
 /// ```rust
 /// use cartesian_array_product::cartesian_array_map;
-/// 
+///
 /// let mapped_product = cartesian_array_map!([1, 2], [3, 4]; |a, b| a + b);
 /// let expected = [
-/// 	1 + 3, 
-/// 	2 + 3, 
-/// 	1 + 4, 
+/// 	1 + 3,
+/// 	2 + 3,
+/// 	1 + 4,
 /// 	2 + 4,
 /// ];
-/// 
+///
 /// assert_eq!(mapped_product, expected);
 /// ```
-/// 
+///
 /// ## Const use
-/// 
+///
 /// ```rust
 /// use cartesian_array_product::cartesian_array_map;
-/// 
+///
 /// const fn sum(a: i32, b: i32) -> i32 {
 ///     a + b
 /// }
-/// 
+///
 /// const mapped_product: [i32; 4] = cartesian_array_map!([1, 2], [3, 4]; sum);
 /// const expected = [
-/// 	1 + 3, 
-/// 	2 + 3, 
-/// 	1 + 4, 
+/// 	1 + 3,
+/// 	2 + 3,
+/// 	1 + 4,
 /// 	2 + 4,
 /// ];
-/// 
+///
 /// assert_eq!(mapped_product, expected);
 /// ```
 #[macro_export]
@@ -103,7 +103,7 @@ macro_rules! cartesian_array_map {
         [$(($($acc),*)),*] // Add commas back in
     };
 
-    // Same as before, but with a wrapper 
+    // Same as before, but with a wrapper
     // (would be nice to just do `$($wrapper)?)`, but that doesn't work because we're already inside a repetition :/)
     (@impl
         initial: $initial:tt;
@@ -143,7 +143,7 @@ macro_rules! cartesian_array_map {
         $crate::cartesian_array_map!(@impl
             initial: [$(($($initial)*))*];
             acc: [
-                $($acc)* 
+                $($acc)*
                 $(( // This is a tuple
                     $($initial)* $current_head
                 ))*
