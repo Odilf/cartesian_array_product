@@ -1,3 +1,24 @@
+/// Takes N arrays and returns a list of N tuples with the combinations of the elements.
+/// 
+/// It starts alternating from the start. 
+/// 
+/// # Example
+/// 
+/// ```rust
+/// use cartesian_array_product::cartesian;
+/// 
+/// let cartesian_product = cartesian!(["a", "b"], ["x", "y", "z"]);
+/// let expected = [
+///     ("a", "x"),
+///     ("b", "x"),
+///     ("a", "y"),
+///     ("b", "y"),
+///     ("a", "z"),
+///     ("b", "z"),
+/// ];
+/// 
+/// assert_eq!(cartesian_product, expected);
+/// ```
 #[macro_export]
 macro_rules! cartesian {
     () => {
