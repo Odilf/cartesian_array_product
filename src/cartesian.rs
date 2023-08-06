@@ -1,7 +1,7 @@
 /// Takes N arrays and returns a list of N tuples with the combinations of the elements.
 ///
 /// It starts alternating from the start.
-/// 
+///
 /// Oftentimes, you want to do a `.map` after this macro. If that's the case, you might
 /// want to use [`cartesian_array_map!`](crate::cartesian_array_map) instead.
 ///
@@ -43,10 +43,10 @@ macro_rules! cartesian_array {
 ///
 /// let mapped_product = cartesian_array_map!([1, 2], [3, 4]; |a, b| a + b);
 /// let expected = [
-/// 	1 + 3,
-/// 	2 + 3,
-/// 	1 + 4,
-/// 	2 + 4,
+///     1 + 3,
+///     2 + 3,
+///     1 + 4,
+///     2 + 4,
 /// ];
 ///
 /// assert_eq!(mapped_product, expected);
@@ -63,10 +63,10 @@ macro_rules! cartesian_array {
 ///
 /// const mapped_product: [i32; 4] = cartesian_array_map!([1, 2], [3, 4]; sum);
 /// const expected: [i32; 4] = [
-/// 	1 + 3,
-/// 	2 + 3,
-/// 	1 + 4,
-/// 	2 + 4,
+///     1 + 3,
+///     2 + 3,
+///     1 + 4,
+///     2 + 4,
 /// ];
 ///
 /// assert_eq!(mapped_product, expected);
