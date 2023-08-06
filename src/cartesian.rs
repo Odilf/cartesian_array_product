@@ -24,7 +24,7 @@
 /// ```
 #[macro_export]
 macro_rules! cartesian_array {
-    ($([$($queue:tt),*]),*) => {
+    ($([$($queue:expr),*]),*) => {
         $crate::cartesian_array_map!($([$($queue),*]),*)
     };
 }
@@ -93,7 +93,7 @@ macro_rules! cartesian_array {
 /// ```
 #[macro_export]
 macro_rules! cartesian_array_map {
-    ($([$($queue:tt),*]),*) => {
+    ($([$($queue:expr),*]),*) => {
         $crate::cartesian_array_map!(@impl
             initial: [];
             acc: [()];

@@ -124,3 +124,36 @@ fn prod_2x2_const_map_caf() {
     assert_eq!(ARRAY, expected)
 }
 
+#[test]
+fn more_complicated_exprs() {
+    let expected = [1 + 3, 2 + 3, 1 + 4, 2 + 4];
+
+    let array = cartesian_array_map!(
+        [{ 1 }, {let i = { 2 }; i}], [3, 4]; 
+        caf!(|a: i32, b: i32| -> i32 { a + b })
+    );
+
+    assert_eq!(array, expected)
+}
+
+#[test]
+fn recursive_macro() {
+    let expected = [
+        (vec![1, 2], vec![5, 6]),
+        (vec![3, 4], vec![5, 6]),
+        (vec![1, 2], vec![7, 8]),
+        (vec![3, 4], vec![7, 8]),
+    ];
+
+    let array = cartesian_array_map!(
+        [vec![1, 2], vec![3, 4]], [vec![5, 6], vec![7, 8]]
+    );
+
+    let array_2 = cartesian_array!(
+        [vec![1, 2], vec![3, 4]], [vec![5, 6], vec![7, 8]]
+    );
+
+    assert_eq!(array, expected);
+    assert_eq!(array_2, expected);
+}
+
